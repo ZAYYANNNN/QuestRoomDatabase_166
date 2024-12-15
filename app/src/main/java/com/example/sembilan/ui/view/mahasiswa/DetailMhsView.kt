@@ -21,9 +21,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.sembilan.data.entity.Mahasiswa
+import com.example.sembilan.ui.viewModel.DetailUiState
 
 @Composable
 fun BodyDetailMhs(
+    modifier: Modifier = Modifier,
+    detailUiState: DetailUiState = DetailUiState(),
+    onDeleteClick: () -> Unit = { }
 
 ) {
 
