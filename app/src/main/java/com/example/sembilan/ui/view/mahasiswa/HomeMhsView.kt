@@ -28,14 +28,22 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.sembilan.data.entity.Mahasiswa
+import com.example.sembilan.ui.viewModel.HomeMhsViewModel
 import com.example.sembilan.ui.viewModel.HomeUiState
+import com.example.sembilan.ui.viewModel.PenyediaViewModel
 import kotlinx.coroutines.launch
 
 @Composable
 fun HomeMhsView(
+    viewModel: HomeMhsViewModel = viewModel(factory = PenyediaViewModel.Factory),
+    onAddMhs: () -> Unit = { },
+    onDetailClick: (String) -> Unit = { },
+    modifier: Modifier = Modifier
+){
 
-){}
+}
 @Composable
 fun BodyHomeMhsView(
     homeUiState: HomeUiState,
