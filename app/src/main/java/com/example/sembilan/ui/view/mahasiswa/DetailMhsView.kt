@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -29,6 +30,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.sembilan.data.entity.Mahasiswa
 import com.example.sembilan.ui.viewModel.DetailUiState
+import com.example.sembilan.ui.viewModel.toMahasiswaEntity
 
 @Composable
 fun BodyDetailMhs(
@@ -48,8 +50,50 @@ fun BodyDetailMhs(
             }
         }
 
-    }
+        detailUiState.isUiEventNotEmpty -> {
+            Column (
+                modifier = modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+            ){
+                ItemDetailMhs(
+                    mahasiswa = detailUiState.detailUiEvent.toMahasiswaEntity(),
+                    modifier = Modifier
+                )
+                Spacer(modifier = Modifier.padding(8.dp))
+                Button(
+                    onClick = {
+                        deleteConfirmationRequired = true
+                    },
+                    modifier = Modifier.fillMaxWidth()
+                ){
+                    Text(text = "Delete")
+                }
 
+                if (deleteConfirmationRequired){
+                    DeleteConfirmationDialog(
+                        onDeleteConfirm = {
+                            deleteConfirmationRequired = false
+                            onDeleteClick()
+                        },
+                        onDeleteCancel = {deleteConfirmationRequired = false},
+                        modifier = Modifier.padding(8.dp)
+                    )
+                }
+            }
+        }
+        detailUiState.isUiEventEmpty -> {
+            Box(
+                modifier = modifier.fillMaxWidth(),
+                contentAlignment = Alignment.Center
+            ){
+                Text(
+                    text = "Data Tidak Ditemukan",
+                    modifier = Modifier.padding(16.dp)
+                )
+            }
+        }
+    }
 }
 @Composable
 fun ItemDetailMhs(
