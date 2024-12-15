@@ -13,10 +13,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import com.example.sembilan.data.entity.Mahasiswa
 
 @Composable
 fun ItemDetailMhs(
-
+    modifier: Modifier = Modifier,
+    mahasiswa: Mahasiswa
 ){}
 @Composable
 fun ComponentDetailMhs(
