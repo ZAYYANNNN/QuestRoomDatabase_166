@@ -28,13 +28,20 @@ import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.sembilan.data.entity.Mahasiswa
+import com.example.sembilan.ui.viewModel.DetailMhsViewModel
 import com.example.sembilan.ui.viewModel.DetailUiState
+import com.example.sembilan.ui.viewModel.PenyediaViewModel
 import com.example.sembilan.ui.viewModel.toMahasiswaEntity
 
 @Composable
 fun DetailMhsView(
-
+    modifier: Modifier = Modifier,
+    viewModel: DetailMhsViewModel = viewModel(factory = PenyediaViewModel.Factory),
+    onBack: () -> Unit = { },
+    onEditClick: (String) -> Unit = { },
+    onDeleteClick: () -> Unit = { }
 ){
 
 }
