@@ -10,7 +10,9 @@ import androidx.compose.ui.Modifier
 
 @Composable
 fun ComponentDetailMhs(
-
+    modifier: Modifier = Modifier,
+    judul: String,
+    isinya: String,
 ) {}
 @Composable
 private fun DeleteConfirmationDialog(
