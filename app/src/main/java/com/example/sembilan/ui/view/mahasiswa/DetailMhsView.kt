@@ -33,6 +33,12 @@ import com.example.sembilan.ui.viewModel.DetailUiState
 import com.example.sembilan.ui.viewModel.toMahasiswaEntity
 
 @Composable
+fun DetailMhsView(
+
+){
+
+}
+@Composable
 fun BodyDetailMhs(
     modifier: Modifier = Modifier,
     detailUiState: DetailUiState = DetailUiState(),
