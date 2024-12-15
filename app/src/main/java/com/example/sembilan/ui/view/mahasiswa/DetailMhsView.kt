@@ -23,6 +23,12 @@ import androidx.compose.ui.unit.sp
 import com.example.sembilan.data.entity.Mahasiswa
 
 @Composable
+fun BodyDetailMhs(
+
+) {
+
+}
+@Composable
 fun ItemDetailMhs(
     modifier: Modifier = Modifier,
     mahasiswa: Mahasiswa
