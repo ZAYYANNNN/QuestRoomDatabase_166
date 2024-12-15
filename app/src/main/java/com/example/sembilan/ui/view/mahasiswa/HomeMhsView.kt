@@ -33,6 +33,10 @@ import com.example.sembilan.ui.viewModel.HomeUiState
 import kotlinx.coroutines.launch
 
 @Composable
+fun HomeMhsView(
+
+){}
+@Composable
 fun BodyHomeMhsView(
     homeUiState: HomeUiState,
     onClick: (String) -> Unit = { },
