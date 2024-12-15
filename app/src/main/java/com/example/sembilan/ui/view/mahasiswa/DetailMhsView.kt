@@ -13,7 +13,7 @@ import androidx.compose.ui.Modifier
 private fun DeleteConfirmationDialog(
     onDeleteConfirm: () -> Unit, onDeleteCancel: () -> Unit, modifier: Modifier = Modifier
 ){
-    AlertDialog(onDismissRequest = { /* Do Nothing */}),
+    AlertDialog(onDismissRequest = { /* Do Nothing */},
     title = { Text("Delete Data") },
     text = {Text("Apakah Anda Yakin Ingin Menghapus Data?") },
     modifier = modifier,
@@ -26,6 +26,6 @@ private fun DeleteConfirmationDialog(
         TextButton(onClick = onDeleteConfirm) {
             Text(text = "Yes")
         }
-    }
+    })
 
 }
