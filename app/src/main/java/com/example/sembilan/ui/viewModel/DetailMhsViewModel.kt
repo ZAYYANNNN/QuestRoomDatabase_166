@@ -1,5 +1,5 @@
 package com.example.sembilan.ui.viewModel
-import androidx.core.app.NotificationCompat.MessagingStyle.Message
+
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -19,9 +19,8 @@ import kotlinx.coroutines.launch
 
 class DetailMhsViewModel(
     savedStateHandle: SavedStateHandle,
-    private val repositoryMhs: RepositoryMhs
-) : ViewModel() {
-
+    private val repositoryMhs: RepositoryMhs,
+) : ViewModel(){
     private val _nim: String = checkNotNull(savedStateHandle[DestinasiDetail.NIM])
 
     val detailUiState: StateFlow<DetailUiState> = repositoryMhs.getMhs(_nim)
@@ -29,7 +28,7 @@ class DetailMhsViewModel(
         .map {
             DetailUiState(
                 detailUiEvent = it.toDetailUiEvent(),
-                isLoading = false
+                isLoading = false,
             )
         }
         .onStart {
@@ -41,39 +40,48 @@ class DetailMhsViewModel(
                 DetailUiState(
                     isLoading = false,
                     isError = true,
-                    errorMessage = it.message ?: "Terjadi kesalahan"
-                )
+                    erorMessage = it.message ?: "Terjadi Kesalahan",
+
+                    )
             )
         }
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(2000),
-            initialValue = DetailUiState(isLoading = true)
+            initialValue = DetailUiState(
+                isLoading = true,
+            ),
         )
 
-    fun deleteMhs() {
-        viewModelScope.launch {
-            detailUiState.value.detailUiEvent.toMahasiswaEntity()?.let {
+    fun deleteMhs(){
+        detailUiState.value.detailUiEvent.toMahasiswaEntity().let {
+            viewModelScope.launch {
                 repositoryMhs.deleteMhs(it)
             }
         }
     }
 }
 
+
+
+
 data class DetailUiState(
-    val detailUiEvent: MahasiswaEvent = MahasiswaEvent(),
+    val detailUiEvent :MahasiswaEvent = MahasiswaEvent(),
     val isLoading: Boolean = false,
     val isError: Boolean = false,
-    val errorMessage: String = ""
+    val erorMessage: String = ""
 ){
     val isUiEventEmpty: Boolean
         get() = detailUiEvent == MahasiswaEvent()
 
     val isUiEventNotEmpty: Boolean
         get() = detailUiEvent != MahasiswaEvent()
-}
 
-fun Mahasiswa.toDetailUiEvent(): MahasiswaEvent {
+}
+/* Data class untuk menampung data yang akan ditampilkan di UI*/
+
+//memindahkan data dari entity ke ui
+fun Mahasiswa.toDetailUiEvent(): MahasiswaEvent{
     return MahasiswaEvent(
         nim = nim,
         nama = nama,
